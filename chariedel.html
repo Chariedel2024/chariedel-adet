@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(255,192,203);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    #login-form {
+        text-align: center;
+    }
+    #login-form input {
+        margin-bottom: 10px;
+        padding: 5px;
+        width: 200px;
+    }
+    #buttons-container {
+        display: none;
+    }
+    #picture-container {
+        margin-top: 20px;
+    }
+    #picture {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+</style>
+</head>
+<body>
+<div id="login-form">
+    <input type="text" id="username" placeholder="Username">
+    <br>
+    <input type="password" id="password" placeholder="Password">
+    <br>
+    <button onclick="login()">Login</button>
+</div>
+<div id="buttons-container">
+    <button onclick="changePicture('girls')">Girls</button>
+    <button onclick="changePicture('boys')">Boys</button>
+</div>
+<div id="picture-container">
+    <img src="cha.jpeg" id="picture" alt="Picture">
+</div>
+<script>
+    let currentIndex = 0;
+    const pictures = {
+        girls: ['girl1.jpeg', 'girl2.jpeg', 'girl3.jpeg', 'girl4.jpeg', 'girl5.jpeg'],
+        boys: ['boy1.jpeg', 'boy2.jpeg', 'boy3.jpeg', 'boy4.jpeg', 'boy5.jpeg']
+    };
+    
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        // Here you can add your login logic, for simplicity, I'm just showing the buttons after login.
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('buttons-container').style.display = 'block';
+    }
+    
+    function changePicture(gender) {
+        const picture = document.getElementById('picture');
+        currentIndex = (currentIndex + 1) % pictures[gender].length;
+        picture.src = pictures[gender][currentIndex];
+    }
+</script>
+</body>
+</html>
